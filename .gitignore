@@ -1,0 +1,7 @@
+# prywatna nakladka glosu - nie do publicznego repo
+references/voice-igor.md
+# python
+__pycache__/
+*.pyc
+# os
+.DS_Store

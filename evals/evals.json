@@ -1,0 +1,175 @@
+{
+  "skill": "humanizer-pl",
+  "version": "1.0.0",
+  "description": "Binary assertions for humanizer-pl. Every assertion is evaluated against the skill's humanized OUTPUT, never against the reference files (those quote blader 1:1 and legitimately contain em-dashes in negative before-examples). Forbidden dash chars are referenced by codepoint (\\u2014 em-dash, \\u2013 en-dash) so this file stays glyph-free. Each case stores input + frozen output + expected results; run evals/run_evals.py to check them deterministically.",
+  "forbidden_chars": [
+    "\u2014",
+    "\u2013"
+  ],
+  "banned_words": {
+    "pl": [
+      "w dzisiejszych czasach",
+      "w dzisiejszym świecie",
+      "w erze cyfrowej",
+      "w dobie cyfryzacji",
+      "dynamicznie rozwijającym",
+      "holistyczny",
+      "holistyczne",
+      "dedykowany",
+      "dedykowana",
+      "kompleksowo",
+      "innowacyjny",
+      "przełomowy",
+      "rewolucyjny",
+      "game-changer",
+      "to zmienia wszystko",
+      "należy podkreślić",
+      "należy zauważyć",
+      "warto zauważyć",
+      "reasumując",
+      "podsumowując",
+      "co więcej",
+      "bez wątpienia",
+      "nie sposób nie zauważyć",
+      "skrojone na miarę",
+      "szyte na miarę",
+      "mając na uwadze",
+      "na koniec dnia",
+      "świetne pytanie",
+      "mam nadzieję, że to pomoże"
+    ],
+    "en": [
+      "delve",
+      "tapestry",
+      "in today's",
+      "vibrant",
+      "testament to",
+      "underscore",
+      "navigate the landscape",
+      "game-changer",
+      "it is important to note",
+      "in conclusion",
+      "let's dive",
+      "great question",
+      "i hope this helps",
+      "nestled",
+      "boasts",
+      "leverage the power",
+      "unlock the potential"
+    ]
+  },
+  "filler_openers": {
+    "pl": [
+      "warto zauważyć",
+      "należy zauważyć",
+      "należy podkreślić",
+      "w dzisiejszych czasach",
+      "w dzisiejszym świecie",
+      "w erze cyfrowej",
+      "podsumowując",
+      "reasumując",
+      "co więcej",
+      "bez wątpienia",
+      "nie sposób nie zauważyć",
+      "czy zastanawiałeś się",
+      "świetne pytanie",
+      "mam nadzieję"
+    ],
+    "en": [
+      "it is important to note",
+      "in today's",
+      "let's dive",
+      "in conclusion",
+      "great question",
+      "honestly?",
+      "look,",
+      "here's the thing",
+      "i hope this helps"
+    ]
+  },
+  "assertions": [
+    {
+      "id": "no_emdash_endash",
+      "applies_to": "output",
+      "type": "regex_absent",
+      "pattern": "[\u2014\u2013]",
+      "desc": "Output contains no em-dash (U+2014) or en-dash (U+2013). Only ASCII '-' allowed."
+    },
+    {
+      "id": "pl_diacritics_present",
+      "applies_to": "output",
+      "when_lang": "pl",
+      "type": "regex_present",
+      "pattern": "[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]",
+      "desc": "For Polish input, the output keeps Polish diacritics (at least one ogonek-class char)."
+    },
+    {
+      "id": "no_banned_words",
+      "applies_to": "output",
+      "type": "wordlist_absent",
+      "source": "banned_words[lang]",
+      "case_insensitive": true,
+      "desc": "Output contains none of the per-language banned AI-slop words/phrases."
+    },
+    {
+      "id": "not_longer_than_input",
+      "applies_to": "output",
+      "type": "length_lte",
+      "metric": "chars",
+      "desc": "Output character count is <= input character count. Humanizing shortens, not inflates."
+    },
+    {
+      "id": "first_line_not_filler",
+      "applies_to": "output",
+      "type": "first_nonempty_line_not_startswith",
+      "source": "filler_openers[lang]",
+      "case_insensitive": true,
+      "desc": "The first non-empty line of the output does not start with a filler opener."
+    },
+    {
+      "id": "no_chatbot_artifacts",
+      "applies_to": "output",
+      "type": "wordlist_absent",
+      "list": [
+        "mam nadzieję, że to pomoże",
+        "świetne pytanie",
+        "i hope this helps",
+        "great question",
+        "let me know if"
+      ],
+      "case_insensitive": true,
+      "desc": "Bonus: output has no leftover chatbot correspondence artifacts in either language."
+    }
+  ],
+  "cases": [
+    {
+      "name": "pl_linkedin_post",
+      "lang": "pl",
+      "note": "Real vault draft (mined LinkedIn post, full body) from content-backlog. KROK 5 PL run; input+output frozen so assertions run deterministically.",
+      "input": "> \"Code is about to cost nothing, and knowing what to build is about to cost you everything.\"\n> \u2014 Nate B Jones\n\nTen cytat przestawił mi priorytety.\n\nRok temu 80% mojego czasu przy budowaniu aplikacji szło na \"jak zbudować\".\nDziś 80% idzie na \"co w ogóle warto\".\n\nI to jest chyba największa zmiana w mojej pracy z AI w ostatnich miesiącach.\n\nW mojej firmie codziennie działa 46 aplikacji, które zbudowałem z AI nie będąc programistą. Ale wiecie co? Żadna z nich nie była najtrudniejsza w budowaniu. Najtrudniejsze było odpowiedzieć sobie: **co w ogóle warto zbudować i dlaczego**.\n\nBo kiedy budowanie staje się tanie, to staje się commodity. Wygrywa ten, kto wie co budować. Kto wie kogo to obsłuży. Kto wie jaki problem to naprawdę rozwiązuje.\n\nJa myślę, że to jest kolejny test dla CEO i founderów: nie \"czy umiesz budować z AI\" (tego się nauczysz), tylko \"czy wiesz co twoja firma potrzebuje najbardziej\".\n\nI to jest dobra wiadomość. Bo business judgement, rozumienie klienta, umiejętność priorytetyzacji \u2014 to rzeczy, które ludzie z doświadczeniem mają. AI tego nie zastąpi jeszcze długo.\n\nA w maju startuje 2. edycja AI Builder Camp. 5 tygodni live + nagrania. Zero kodowania. Przychodzą PM-owie, founderzy, managerowie, UX designerzy. 12 maja start, do 26 kwietnia early bird.\n\n👉 https://aibusinessbuilders.pl/kurs",
+      "expect": {
+        "no_emdash_endash": true,
+        "pl_diacritics_present": true,
+        "no_banned_words": true,
+        "not_longer_than_input": true,
+        "first_line_not_filler": true,
+        "no_chatbot_artifacts": true
+      },
+      "output": "\"Code is about to cost nothing, and knowing what to build is about to cost you everything.\"\n- Nate B Jones\n\nTen cytat przestawił mi priorytety.\n\nRok temu 80% mojego czasu przy budowaniu aplikacji szło na \"jak zbudować\".\nDziś 80% idzie na \"co w ogóle warto\".\n\nTo chyba największa zmiana w mojej pracy z AI w ostatnich miesiącach.\n\nW mojej firmie codziennie działa 46 aplikacji, które zbudowałem z AI nie będąc programistą. Żadna nie była najtrudniejsza w budowaniu. Najtrudniej było odpowiedzieć sobie: co w ogóle warto zbudować i dlaczego.\n\nBo kiedy budowanie staje się tanie, staje się commodity. Wygrywa ten, kto wie co budować, dla kogo i jaki problem to naprawdę rozwiązuje.\n\nMyślę, że to kolejny test dla CEO i founderów: nie \"czy umiesz budować z AI\" (tego się nauczysz), tylko \"czy wiesz, czego twoja firma potrzebuje najbardziej\".\n\nI to dobra wiadomość. Business judgement, rozumienie klienta, priorytetyzacja - to rzeczy, które ludzie z doświadczeniem mają. AI tego nie zastąpi jeszcze długo.\n\nW maju startuje 2. edycja AI Builder Camp. 5 tygodni live + nagrania. Zero kodowania. Przychodzą PM-owie, founderzy, managerowie, UX designerzy. 12 maja start, do 26 kwietnia early bird.\n\nhttps://aibusinessbuilders.pl/kurs"
+    },
+    {
+      "name": "en_linkedin_post",
+      "lang": "en",
+      "note": "Representative AI-generated English draft on a real topic (AI Builder Camp). KROK 5 EN run; input+output frozen.",
+      "input": "In today's rapidly evolving digital landscape, artificial intelligence stands as a game-changer that is reshaping how businesses operate. Leveraging the power of cutting-edge technology, AI Builder Camp empowers non-technical professionals to build software without writing a single line of code.\n\nIt is important to note that this groundbreaking program delivers a comprehensive, holistic, and transformative learning experience. Participants will delve into the intricate world of building, unlock their full potential, and embark on a journey toward excellence.\n\nWhether you are a founder, a product manager, or a curious entrepreneur, this is a must-attend opportunity that boasts real results. The future is bright. Exciting times lie ahead.\n\nGreat question: are you ready to transform your career? I hope this helps! Let me know if you'd like to learn more.",
+      "expect": {
+        "no_emdash_endash": true,
+        "no_banned_words": true,
+        "not_longer_than_input": true,
+        "first_line_not_filler": true,
+        "no_chatbot_artifacts": true
+      },
+      "output": "AI Builder Camp teaches non-technical people to build software without writing code.\n\nIt is built for founders, product managers and other non-engineers who have an idea but cannot code it themselves. You describe what you want instead of writing the code, and you end up with working software.\n\nNo buzzwords required. If you can explain the problem clearly, you can build the thing."
+    }
+  ]
+}
