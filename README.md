@@ -66,7 +66,6 @@ humanizer-pl/
     polszczyzna-pl.md        warstwa naturalności PL (anglicyzmy, czasowniki, kalki,
                             ukryty "nie X, to Y", parataksa -> hipotaksa)
     przyklady.md            pary PRZED/PO (PL z banku, EN z blader)
-    voice-igor.md           (opcjonalna prywatna nakładka głosu - NIE w tym repo)
   evals/
     evals.json              6 binarnych asercji + 2 zamrożone case'y
     run_evals.py            deterministyczny runner

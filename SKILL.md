@@ -39,8 +39,7 @@ płaskie, jeden poziom w głąb. Nie zagnieżdżaj dalej.
 ## Wspólny proces
 
 1. **Przeczytaj wejście** i znajdź każdy tell z wczytanego pliku wzorców.
-2. **Kalibracja głosu (opcjonalna).** Jeśli user dał próbkę swojego pisania albo wskazał
-   `references/voice-igor.md`, przeczytaj ją najpierw: długość zdań, poziom słownictwa, jak
+2. **Kalibracja głosu (opcjonalna).** Jeśli user dał próbkę swojego pisania, przeczytaj ją najpierw: długość zdań, poziom słownictwa, jak
    zaczyna akapity, nawyki interpunkcyjne, powracające zwroty. Dopasuj wynik do tej próbki, nie do
    generycznego "ładnego" stylu. Bez próbki: naturalny, zróżnicowany, konkretny głos.
 3. **Draft.** Przepisz, nie wycinaj treści. Pokrywasz wszystko, co pokrywał oryginał (pięć
@@ -125,7 +124,7 @@ finalnych poprawek; Bielik tylko podsuwa (drugi rzut oka).
 
 ## Twarde zasady wyjścia
 
-- **Zero myślnika długiego i półpauzy.** Zawsze zwykły myślnik ASCII `-`. To twarda zasada Igora,
+- **Zero myślnika długiego i półpauzy.** Zawsze zwykły myślnik ASCII `-`. To twarda zasada projektu,
   nie preferencja. Zamienniki w kolejności: kropka, przecinek, dwukropek, nawias, przebudowa zdania.
 - **Polskie znaki zachowane** w polskim tekście. `własny` nie `wlasny`, `się` nie `sie`.
 - **Nie zmieniaj języka.** Polski wchodzi, polski wychodzi. Humanizacja to nie tłumaczenie.
@@ -145,11 +144,6 @@ Przy false-positives: chroń to, co naprawdę ludzkie (konkretny detal, liczba, 
 powtórzone konstrukcje przepisuj naprawdę (patrz "Głębokość ingerencji"). Guard z sekcji "What NOT
 to flag" w `references/patterns-en.md` obowiązuje też dla PL.
 
-## Głos Igora (opcjonalna nakładka)
-
-Skill jest voice-neutralny i nadaje się do dania komukolwiek. Jeśli istnieje
-`references/voice-igor.md` i user prosi "humanizuj + brzmij jak ja", wczytaj go jako nakładkę nad
-wspólnym procesem. To plik prywatny, nie część rdzenia.
 
 ## Learnings
 
@@ -159,18 +153,18 @@ wspólnym procesem. To plik prywatny, nie część rdzenia.
   więc jego negatywne przykłady "Before" zawierają myślnik długi (to jest demonstrowany tell).
   Rozwiązanie: zakaz myślnika obowiązuje OUTPUT skilla i prozę autorską (router, patterns-pl,
   evals), a nie wierne cytaty źródła. Evals sprawdzają wynik humanizacji, nie pliki reference.
-- 2026-06-13: Feedback Igora po teście na blogu - skill był NIEŚMIAŁY (wymiana myślników plus parę
+- 2026-06-13: Z testu na blogu wyszło, że skill był NIEŚMIAŁY (wymiana myślników plus parę
   słów, ale zostawione 4x "to nie X, to Y"). Za dużo hamulców ("nie wycinaj", "output nie dłuższy",
   guard) plus zachowawczy blader = kosmetyka. Dodano sekcję "Głębokość ingerencji": powtórzony
   wzorzec to tell, zaczynaj od pointy nie od negacji, guard chroni konkret nie konstrukcję, test
   odwagi na diffie. Domyślnie ma przepisywać strukturę, nie tylko interpunkcję.
-- 2026-06-13: Feedback Igora po teście na blogach - de-slop nie wystarcza dla PL, bo zostawia
+- 2026-06-13: Z testów na blogach: de-slop nie wystarcza dla PL, bo zostawia
   anglicyzmy ("supply", "kuracja"), zdania bez czasownika / z frontem przymiotnika, kalki
   ("zawody automatyzacyjne") i UKRYTY "nie X, to Y" ("Nie uczę promptowania, uczę myślenia").
   Dodano osobną warstwę `references/polszczyzna-pl.md` + krok 6 "Przebieg polszczyzny" + wzorzec
   dedykowanego subagenta-recenzenta polszczyzny w workflow. Cel: polski ma brzmieć jak polski,
   zostawiając żargon autora.
-- 2026-06-13: Pomysł Igora - recenzent polszczyzny w dwóch trybach. Bez Bielika (główny model) i
+- 2026-06-13: Recenzent polszczyzny w dwóch trybach. Bez Bielika (główny model) i
   z Bielikiem (lokalny natywny polski LLM przez Ollama, `tools/bielik-review.py`). Bielik flaguje
   kalki swoim native uchem, główny model naprawia (Bielik mniejszy, ryzyko faktów). Darmowo,
   lokalnie, z fallbackiem do trybu bez Bielika gdy Ollama niedostępna. Setup: `tools/setup-bielik.md`.
@@ -179,7 +173,7 @@ wspólnym procesem. To plik prywatny, nie część rdzenia.
   N) ściął propozycje 39->14 i szkody 19->6, ale sufit jakości został. Werdykt: bez Bielika domyślnie,
   z Bielikiem = ciekawostka. Tryb z Bielikiem POKAZUJE propozycje userowi (fragment -> zmiana + ocena
   Opusa), user decyduje - nie aplikujemy po cichu.
-- 2026-06-13: Igor wskazał dwa braki, które de-slop przepuszczał. (1) "to nie X, to Y" przeżywa
+- 2026-06-13: Z testów wyszły dwa braki, które de-slop przepuszczał. (1) "to nie X, to Y" przeżywa
   najczęściej jako DWA urywane zdania - problemem jest staccato, nie kontrast; fix to scalenie w
   zdanie złożone. (2) Zdania-dopełniacze bez czasownika ("Od rozwiązywania problemów z agentem u
   boku.") - polski tak nie pisze. Master-fix dla obu: parataksa -> hipotaksa (sekcja 5 w

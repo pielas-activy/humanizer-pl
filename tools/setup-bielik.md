@@ -94,7 +94,7 @@ przegrał z recenzentem-Opusem.** Konkretnie:
   "selekcja". To dokładnie ryzyko faktów, przed którym przestrzegamy. Dodatkowo nie doczyszczał
   slopu do końca ("kompleksowe" zostało) i dopisywał treść spoza oryginału.
 
-Sprawdzono też, czy to wina promptu (hipoteza Igora): przetestowano 4 strategie - flagger, doradca,
+Sprawdzono też, czy to wina promptu: przetestowano 4 strategie - flagger, doradca,
 doradca z twardym zakazem zmian sensu + negatywnymi przykładami, oraz tryb "tylko wskazuj nie
 przepisuj". Żadna nie naprawiła problemu. Przy twardym zakazie Bielik zaproponował DOKŁADNIE zakazany
 przykład ("wyciągnął framework" -> "stworzył model") i chciał przepisywać dosłowne cytaty. W trybie
