@@ -34,7 +34,8 @@ LLM) ma auto-instalator, patrz niżej.
    Przepisuje strukturę zdań, nie tylko interpunkcję.
 3. **Przebieg polszczyzny (tylko PL).** Tłumaczy leniwe anglicyzmy (zostawia żargon autora),
    pilnuje czasowników, rozwija kalki-przymiotniki, łapie ukryty "nie X, to Y" i **scala urywane
-   zdania w złożone** (parataksa -> hipotaksa, najsilniejszy polski tell).
+   zdania w złożone** (parataksa -> hipotaksa, najsilniejszy polski tell). Na końcu osobny **skan
+   kalek** (test odwrotnego tłumaczenia, nie zamknięta lista).
 4. **Final.** Skan: zero myślnika długiego, pełne ogonki, fakty 1:1.
 
 ## Tryby recenzenta polszczyzny
@@ -55,6 +56,14 @@ jako samodzielny recenzent gęstego w fakty tekstu Bielik-11B nie dowozi; jako d
 nadzorem mocniejszego modelu jest bezpieczny, ale niewiele wnosi. Tryb z Bielikiem zostaje jako
 ciekawostka i przykład, jak spiąć lokalny model w pipeline.
 
+## Profil żargonu (opcjonalny, per user)
+
+Skill nie zna z góry Twojego żargonu, więc go nie hardkoduje. Zamiast tego może zapamiętać Twoją
+osobistą listę terminów do ochrony (branżowych słów, których nie chcesz tłumaczyć) w lokalnym,
+gitignorowanym pliku `references/jargon-profile.local.md`. Gdy masz w tekście dużo branżowego
+żargonu, skill może sam zaproponować krótką sesję i zbudować albo zaktualizować ten profil. Plik
+jest prywatny i per maszyna, nie trafia do repo.
+
 ## Struktura
 
 ```
@@ -64,8 +73,9 @@ humanizer-pl/
     patterns-en.md          33 wzorce blader 1:1 (EN) + TOC
     patterns-pl.md          6 kategorii PL + rodzina "manufaktura rytmu"
     polszczyzna-pl.md        warstwa naturalności PL (anglicyzmy, czasowniki, kalki,
-                            ukryty "nie X, to Y", parataksa -> hipotaksa)
+                            ukryty "nie X, to Y", parataksa -> hipotaksa, skan kalek)
     przyklady.md            pary PRZED/PO (PL z banku, EN z blader)
+    raport-html.md          szablon raportu HTML (side-by-side + lista zmian), tryb opcjonalny
   evals/
     evals.json              6 binarnych asercji + 2 zamrożone case'y
     run_evals.py            deterministyczny runner
@@ -95,7 +105,8 @@ z banów, output nie dłuższy niż input, pierwsza linia nie wypełniacz, brak 
 ## Użycie
 
 W Claude Code: `/humanizer-pl` albo "zhumanizuj ten post / wywal AI-slop z tego maila".
-Auto-wykrywa PL/EN. Tryb z Bielikiem: "zhumanizuj + sprawdź Bielikiem".
+Auto-wykrywa PL/EN. Tryb z Bielikiem: "zhumanizuj + sprawdź Bielikiem". Raport HTML ze zmianami
+(side-by-side + lista zmian): "zhumanizuj + raport HTML".
 
 ## Atrybucja
 

@@ -36,6 +36,11 @@ Patrzysz na tekst wejściowy. Heurystyka:
 Wczytaj `references/przyklady.md` dla par PRZED/PO, jeśli potrzebujesz kalibracji. References są
 płaskie, jeden poziom w głąb. Nie zagnieżdżaj dalej.
 
+Jeśli w `references/` jest `jargon-profile.local.md` (osobisty profil żargonu usera, lokalny i
+gitignorowany), wczytaj go. Terminy z niego są TWARDO CHRONIONE we wszystkich przebiegach (de-slop,
+polszczyzna, skan kalek): nigdy ich nie tłumaczysz ani nie "poprawiasz". To rozszerza generyczny
+guard o konkretne słownictwo tego usera.
+
 ## Wspólny proces
 
 1. **Przeczytaj wejście** i znajdź każdy tell z wczytanego pliku wzorców.
@@ -75,11 +80,11 @@ i kilka słów, byłeś za miękki. Czysty tekst zmienia STRUKTURĘ zdań, nie t
 
 Dla polskiego tekstu de-slop to dopiero połowa. Drugi przebieg pilnuje, żeby polski brzmiał jak
 polski, nie jak tłumaczenie z angielskiego. Pełne reguły i tabele w `references/polszczyzna-pl.md`.
-W skrócie pięć rzeczy:
+W skrócie sześć rzeczy:
 
 - **Anglicyzmy: tłumacz leniwe, zostaw żargon.** "supply" -> podaż, "kuracja"/curation -> selekcja
-  albo wybór, "commodity" -> towar masowy. ZOSTAW żargon i głos autora (judgment, moat, agentic
-  economy, MCP, tooling, product management) oraz nazwy własne.
+  albo wybór, "commodity" -> towar masowy. ZOSTAW świadomy żargon zawodowy autora (z dowolnej
+  branży: prawo, medycyna, kuchnia, finanse, sport, IT) oraz nazwy własne.
 - **Każde zdanie ma czasownik osobowy.** Nie zaczynaj od przymiotnika-orzecznika w stylu kalki
   ("Najcenniejsza w internecie jest...") - przestaw szyk albo dopisz czasownik. Urwany dopełniacz
   bez czasownika ("Od rozwiązywania problemów z agentem u boku.") scal z sąsiadem.
@@ -90,6 +95,11 @@ W skrócie pięć rzeczy:
   zdania; polski woli jedno złożone. To też rozbraja staccato "to nie X, to Y": "To nie jest 'wpis
   do CV'. To jest nowa drabina." -> "to nie jest już tylko 'wpis do CV', ale dostawienie nowej
   drabiny w ścieżce kariery." Nie scalaj wszystkiego; jedno krótkie zdanie dla emfazy zostaje.
+- **Skan kalek (osobny ruch na końcu).** Kalki są gramatyczne, więc przepuszcza je i de-slop, i
+  szybkie czytanie. Przejedź tekst jeszcze raz TYLKO pod kątem kalek, testem: (1) odwrotne
+  tłumaczenie na angielski ("na ten moment" -> "at this point"), (2) czy jest prostsze polskie słowo
+  (finalnie -> ostatecznie), (3) rejestr (korpo czy mowa). Listy nie da się domknąć, więc to test,
+  nie słownik. Pełna sekcja "Skan kalek" w `references/polszczyzna-pl.md`.
 
 Recenzenta polszczyzny masz w dwóch trybach (wybierz):
 
@@ -144,6 +154,31 @@ Przy false-positives: chroń to, co naprawdę ludzkie (konkretny detal, liczba, 
 powtórzone konstrukcje przepisuj naprawdę (patrz "Głębokość ingerencji"). Guard z sekcji "What NOT
 to flag" w `references/patterns-en.md` obowiązuje też dla PL.
 
+## Tryb opcjonalny: raport HTML (side-by-side + lista zmian)
+
+Na życzenie usera ("raport HTML", "pokaż zmiany side by side", "raport zmian", "diff HTML",
+"podświetl zmiany") oddaj dodatkowo samodzielny plik HTML z dwiema kolumnami obok siebie (oryginał
+lewo, wynik prawo, z podświetlonymi zmianami) i tabelą zmian pod spodem (fragment przed -> po, typ
+tellu, krótki powód). Gdy user o to prosi, wczytaj `references/raport-html.md` (szablon plus
+instrukcja) i wygeneruj plik. To dodatek, nie zamiennik zwykłego before/after w czacie.
+
+## Tryb opcjonalny: profil żargonu (osobista lista keep, per user)
+
+Skill uniwersalny nie zna z góry niczyjego żargonu, więc zamiast wpisywać go na sztywno pozwala
+każdemu userowi zbudować własną listę terminów do ochrony. Lista żyje lokalnie w
+`references/jargon-profile.local.md` (gitignorowana, nigdy nie trafia do repo) i jest wczytywana w
+KROK 0. Te terminy są chronione ponad generyczny guard: nie tłumaczysz ich ani nie ruszasz.
+
+Kiedy zaproponować sesję:
+- **Wprost**, gdy user prosi ("zbuduj/zaktualizuj mój profil żargonu", "zapamiętaj mój żargon").
+- **Z własnej inicjatywy**, gdy w tekście widzisz dużo powracających, branżowych terminów obcych,
+  przy których wahasz się "zostawić czy tłumaczyć". Wtedy zaproponuj krótką sesję, nie rób tego po
+  cichu.
+
+Sesja: wypisz kandydatów (terminy plus zgadnięty obszar), user potwierdza, dodaje albo usuwa, a Ty
+zapisujesz wynik do `references/jargon-profile.local.md` (prosta lista, opcjonalnie z obszarem).
+Profil jest per user i prywatny; na kolejnych przebiegach po prostu go wczytujesz.
+
 
 ## Learnings
 
@@ -178,3 +213,20 @@ to flag" w `references/patterns-en.md` obowiązuje też dla PL.
   zdanie złożone. (2) Zdania-dopełniacze bez czasownika ("Od rozwiązywania problemów z agentem u
   boku.") - polski tak nie pisze. Master-fix dla obu: parataksa -> hipotaksa (sekcja 5 w
   polszczyzna-pl.md). AI sieka po polsku na krótkie zdania, polski woli złożone.
+- 2026-06-14: Kalki przeżywają de-slop, bo to poprawna polszczyzna - pass strukturalny się po nich
+  prześlizguje, a kolejne przebiegi na tym samym tekście łapały nowe ("na ten moment", "finalnie").
+  Wniosek z użycia: słownika kalek nie da się domknąć (lista zawsze niepełna). Fix: osobny, nazwany
+  "Skan kalek" oparty na TEŚCIE (odwrotne tłumaczenie + prostsze polskie słowo + rejestr), nie na
+  dopasowaniu do listy; lista = tylko ziarno do kalibracji. Sekcja w polszczyzna-pl.md + bullet w
+  przebiegu polszczyzny.
+- 2026-06-14: Odchudzenie z biasu AI. Skill jest uniwersalny i publiczny, a przykłady "zostaw
+  żargon" oraz część par PRZED/PO były z jednej branży (AI/vibecoding), co sugerowało, że skill jest
+  "do AI". Keep-lista i guard przepisane na zasadę (żargon zawodowy z DOWOLNEJ branży), część
+  przykładów PRZED/PO rozsiana na różne dziedziny (gastronomia, fitness, sprzedaż).
+- 2026-06-14: Dodany tryb opcjonalny "raport HTML" (references/raport-html.md): samodzielny plik z
+  side-by-side oryginał vs wynik (podświetlone zmiany) + tabela zmian (przed -> po, typ tellu, powód).
+  Na życzenie usera, nie domyślnie.
+- 2026-06-14: Zamiast hardkodować żargon (czyjkolwiek) w uniwersalnym skillu, dodany tryb "profil
+  żargonu": per-user lista keep w `references/jargon-profile.local.md` (gitignore `references/*.local.md`),
+  wczytywana w KROK 0 i chroniona we wszystkich przebiegach. Skill może sam zaproponować sesję, gdy
+  wykryje gęsty branżowy żargon. Żargon konkretnego usera (np. autora) żyje w jego profilu, nie w repo.

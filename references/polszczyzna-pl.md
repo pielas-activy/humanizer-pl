@@ -25,20 +25,58 @@ Decyzja per słowo. ZOSTAW termin angielski, gdy to (a) ustalony żargon technic
 polskiego odpowiednika, albo (b) świadomy, powracający termin autora. PRZETŁUMACZ, gdy istnieje
 naturalne polskie słowo, a angielski nic nie wnosi (to wtedy lenistwo, nie głos).
 
-| Zostaw (żargon / głos autora) | Przetłumacz (leniwy anglicyzm) |
+| Zostaw (świadomy żargon / głos autora) | Przetłumacz (leniwy anglicyzm) |
 |---|---|
-| judgment, moat, agentic economy, routing layer, agent discovery, MCP, deploy, framework, product management, tooling, vibe coding | supply -> podaż |
-| nazwy własne i produkty (Stripe, Notion, ChatGPT) | curation / "kuracja" -> selekcja, wybór, kuratorowanie |
-| | commodity -> towar masowy, dobro powszechne |
-| | "plausible content" -> wiarygodnie wyglądające treści |
-| | checkout -> koszyk, płatność |
+| żargon zawodowy autora z dowolnej branży (prawo, medycyna, kuchnia, finanse, sport, IT) | supply -> podaż |
+| nazwy własne, marki, produkty | curation / "kuracja" -> selekcja, wybór |
+| ustalone terminy bez dobrego polskiego odpowiednika | commodity -> towar masowy |
+| termin, który powraca w tekście jako świadomy motyw | feedback -> informacja zwrotna |
+| | deadline -> termin |
 | | output (ogólny rzeczownik) -> wynik, efekt |
-| | "structured knowledge graph" -> uporządkowany graf wiedzy |
+| | insight -> wniosek, spostrzeżenie |
 
 Uwaga na **pseudo-polski** (kalka udająca tłumaczenie): "kuracja" zamiast "curation" brzmi gorzej
 niż oryginał. Wybierz prawdziwe polskie słowo (selekcja, wybór), nie spolszczony angielski.
 Gdy nie masz pewności, czy coś to żargon autora, sprawdź czy termin powtarza się w tekście jako
 świadomy motyw - jeśli tak, zostaw.
+
+### Skan kalek: test, nie lista (osobny ruch po de-slopie)
+
+Kalek nie da się wypisać wszystkich, lista zawsze będzie niepełna. Dlatego to nie jest dopasowanie
+do słownika, tylko osobny przebieg z TESTEM, który łapie też kalki spoza listy. Rób go oddzielnie,
+bo kalka jest gramatycznie poprawna i w normalnym czytaniu się po niej prześlizgujesz.
+
+Trzy testy na każdą podejrzaną frazę:
+
+1. **Odwrotne tłumaczenie.** Przetłumacz frazę dosłownie na angielski. Jeśli wychodzi naturalna,
+   częsta angielska fraza ("na ten moment" -> "at this point", "robić sens" -> "make sense"), to
+   sygnał kalki.
+2. **Prostsze polskie słowo.** Łaciński albo angielski rdzeń (finalnie, definitywnie, dedykowany,
+   implementować, adresować) prawie zawsze ma zwyklejszy polski odpowiednik. Jeśli istnieje i nic
+   nie tracisz, użyj go.
+3. **Rejestr.** Brzmi jak korpo-mail albo slajd, czy jak człowiek mówi? Korpo bez potrzeby
+   upraszczaj.
+
+Guard (nie przesadź): kalka to LENIWA obca fraza tam, gdzie polski ma swoje zwykłe słowo. Kalką NIE
+jest świadomy żargon zawodowy autora (każda branża ma swój: prawo, medycyna, kuchnia, finanse,
+sport, IT), nazwy własne, ani zapożyczenia bez dobrego polskiego odpowiednika. W razie wątpliwości:
+jeśli termin powraca w tekście jako świadomy motyw albo nie ma zgrabnego polskiego zamiennika,
+zostaw go.
+
+Lista niżej to ziarno do kalibracji ucha, nie zamknięty zbiór:
+
+| Kalka (ziarno) | Po polsku |
+|---|---|
+| na ten moment / w tym momencie | teraz, na razie, na dziś |
+| finalnie | ostatecznie, w końcu, na końcu |
+| w międzyczasie | tymczasem |
+| adresować problem/potrzebę | zająć się, odpowiedzieć na |
+| dedykowany | osobny, przeznaczony do, dla |
+| bazować na / w oparciu o | na podstawie, opierać się na |
+| posiadać (gdy wystarczy "mieć") | mieć |
+| robić sens | mieć sens |
+| definitywnie | na pewno, zdecydowanie |
+| generalnie / tak naprawdę (wypełniacz) | ogólnie, w sumie, albo USUŃ |
 
 ## 2. Zdanie musi mieć czasownik
 
@@ -107,8 +145,9 @@ to SERIA urywanych zdań, które proszą się o złożenie. Szukaj sąsiadów, k
 
 ## Jak używać
 
-Po przebiegu de-slop puść tekst jeszcze raz pod kątem punktów 1-5. W trybie workflow zrób z tego
-osobnego subagenta "recenzent polszczyzny": czyta gotowy wynik i flaguje (a) anglicyzmy do
-przetłumaczenia, (b) zdania bez czasownika osobowego albo z frontem przymiotnika, (c)
-kalki-przymiotniki, (d) ukryty "nie X, to Y", (e) serie urywanych zdań do scalenia. Żargon autora i
-terminy bez polskiego odpowiednika zostają.
+Po przebiegu de-slop puść tekst jeszcze raz pod kątem punktów 1-5, a na końcu zrób osobny skan
+kalek (sekcja "Skan kalek"). W trybie workflow zrób z tego osobnego subagenta "recenzent
+polszczyzny": czyta gotowy wynik i flaguje (a) anglicyzmy do przetłumaczenia, (b) zdania bez
+czasownika osobowego albo z frontem przymiotnika, (c) kalki-przymiotniki, (d) ukryty "nie X, to Y",
+(e) serie urywanych zdań do scalenia, (f) kalki wykryte testem odwrotnego tłumaczenia. Żargon autora
+i terminy bez polskiego odpowiednika zostają.

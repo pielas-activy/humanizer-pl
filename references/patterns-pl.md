@@ -99,10 +99,10 @@ Myślnik długi, sztuczne pary, anafora dla rytmu, ściana zdań wielokrotnie z�
 | nadmierna, "do bólu" poprawność i symetria | dodaj dygresję, zmianę tempa, potoczny zwrot |
 | nadmiar emoji (rakieta, iskierki, ogień, niebieskie romby) | usuń lub zostaw max jeden, jeśli pasuje do głosu |
 
-**PRZED:** Zbuduj aplikację w weekend. Bez kodu. Bez programistów. Bez budżetu.
+**PRZED:** Schudnij na lato. Bez diety. Bez wyrzeczeń. Bez wysiłku.
 
-**PO:** W weekend zbudowałem aplikację do faktur. Nie napisałem ani linijki kodu, opisałem tylko,
-czego chcę, a resztę zrobił agent.
+**PO:** Na lato zrzuciłem 6 kilo. Nie katowałem się dietą, po prostu codziennie chodziłem na
+godzinny spacer.
 
 ### Manufaktura rytmu - dalsze siostry "to nie X, to Y"
 
@@ -187,21 +187,21 @@ odróżnia humanizer-pl od zwykłego tłumaczenia listy angielskiej.
 | "Po pierwsze... Po drugie... Po trzecie" (porządek dla porządku) | numeruj tylko gdy kolejność ma znaczenie |
 | brak lokalnego kontekstu (przykłady oderwane od polskich realiów) | podmień na polski kontekst (PLN, polskie firmy, polskie systemy) |
 
-**PRZED:** W dzisiejszych czasach, w dynamicznie rozwijającym się świecie technologii, sztuczna
-inteligencja staje się kluczowym elementem transformacji biznesu. To nie luksus, to konieczność.
+**PRZED:** W dzisiejszych czasach, w dynamicznie rozwijającym się świecie gastronomii, jakość
+obsługi staje się kluczowym elementem sukcesu każdej restauracji. To nie luksus, to konieczność.
 
-**PO:** Wczoraj wdrożyłem agenta, który przejął nasz proces ofertowania. Skrócił czas z 3 godzin
-do 20 minut. I to jest dopiero pierwszy z pięciu procesów, które chcę mu oddać.
+**PO:** Wczoraj skróciłem czas wydania dania z 25 do 12 minut, zmieniając kolejność pracy na
+kuchni. I to dopiero pierwsza z pięciu zmian, które mam w planie.
 
 **Powtórzony "to nie X, to Y" (zacznij od twierdzenia):** gdy ten sam szablon wraca 3-4 razy w
 tekście, to manufaktura rytmu, nie głos. Przepisz większość, zostaw najwyżej jeden raz.
 
-- "Trudna część to nie budowanie. To wiedza, CO zbudować." -> "Najtrudniej jest wiedzieć, CO
-  zbudować. Samo budowanie jest łatwe."
-- "VibeCoding to nie trend. To zmiana, kto może budować software." -> "VibeCoding zmienia jedną
-  rzecz: kto w ogóle może budować software."
-- "Najcenniejsza rzecz to nie compute, to Twoja sytuacja." -> "Najcenniejsza jest Twoja konkretna
-  sytuacja. Nie moc obliczeniowa."
+- "Trudna część to nie gotowanie. To wiedza, CO ugotować." -> "Najtrudniej jest wiedzieć, CO
+  ugotować. Samo gotowanie jest łatwe."
+- "Dobry trening to nie ciężary. To regularność." -> "Dobry trening robi przede wszystkim
+  regularność, nie same ciężary."
+- "W sprzedaży najważniejsza nie jest cena, to zaufanie." -> "W sprzedaży najważniejsze jest
+  zaufanie, nie cena."
 
 ---
 
