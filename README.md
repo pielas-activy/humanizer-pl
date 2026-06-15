@@ -37,6 +37,8 @@ LLM) ma auto-instalator, patrz niżej.
    zdania w złożone** (parataksa -> hipotaksa, najsilniejszy polski tell). Na końcu osobny **skan
    kalek** (test odwrotnego tłumaczenia, nie zamknięta lista).
 4. **Final.** Skan: zero myślnika długiego, pełne ogonki, fakty 1:1.
+5. **Uczy się Twojego żargonu (opcjonalnie).** Wykrywa branżowe terminy i może zapamiętać Twoją
+   osobistą listę "tego nie ruszaj", per user i lokalnie. Szczegóły w sekcji "Profil żargonu".
 
 ## Tryby recenzenta polszczyzny
 
@@ -58,11 +60,18 @@ ciekawostka i przykład, jak spiąć lokalny model w pipeline.
 
 ## Profil żargonu (opcjonalny, per user)
 
-Skill nie zna z góry Twojego żargonu, więc go nie hardkoduje. Zamiast tego może zapamiętać Twoją
-osobistą listę terminów do ochrony (branżowych słów, których nie chcesz tłumaczyć) w lokalnym,
-gitignorowanym pliku `references/jargon-profile.local.md`. Gdy masz w tekście dużo branżowego
-żargonu, skill może sam zaproponować krótką sesję i zbudować albo zaktualizować ten profil. Plik
-jest prywatny i per maszyna, nie trafia do repo.
+Skill nie zna z góry niczyjego żargonu i celowo go nie hardkoduje (nie jest "do AI" ani do żadnej
+jednej branży). Zamiast tego potrafi **wykryć Twój żargon i go zapamiętać**:
+
+- Gdy w tekście widzi dużo powracających, branżowych terminów (prawnik: "cesja", "rękojmia";
+  marketer: "lead", "funnel"), sam proponuje krótką sesję w stylu "zapamiętać, których nie ruszać?".
+- Możesz to też odpalić wprost: "zapamiętaj mój żargon" albo "zbuduj mój profil żargonu".
+- Potwierdzoną listę zapisuje lokalnie w `references/jargon-profile.local.md` (prywatnie, per
+  maszyna, gitignore, nie trafia do repo) i przy kolejnych tekstach pilnuje, żeby tych słów nie
+  tłumaczyć ani nie "poprawiać".
+
+Każdy ma swój profil: prawnik prawniczy, marketer marketingowy, Ty swój. Dzięki temu uniwersalny
+skill nie przekłada Twojego fachowego słownictwa na siłę.
 
 ## Struktura
 
@@ -106,7 +115,8 @@ z banów, output nie dłuższy niż input, pierwsza linia nie wypełniacz, brak 
 
 W Claude Code: `/humanizer-pl` albo "zhumanizuj ten post / wywal AI-slop z tego maila".
 Auto-wykrywa PL/EN. Tryb z Bielikiem: "zhumanizuj + sprawdź Bielikiem". Raport HTML ze zmianami
-(side-by-side + lista zmian): "zhumanizuj + raport HTML".
+(side-by-side + lista zmian): "zhumanizuj + raport HTML". Profil żargonu (czego nie tłumaczyć):
+"zapamiętaj mój żargon".
 
 ## Atrybucja
 
